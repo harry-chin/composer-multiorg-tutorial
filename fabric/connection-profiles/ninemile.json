@@ -1,0 +1,72 @@
+{
+    "name": "itrazo-ninemile",
+    "x-type": "hlfv1",
+    "x-commitTimeout": 300,
+    "version": "1.0.0",
+  
+    "client": {
+      "organization": "Ninemile",
+      "connection": {
+        "timeout": {
+          "peer": {
+            "endorser": "300",
+            "eventHub": "300",
+            "eventReg": "300"
+          },
+          "orderer": "300"
+        }
+      }
+    },
+  
+    "orderers": {
+      "orderer.itrazo.com": {
+        "url": "grpc://localhost:7050"
+      }
+    },
+  
+    "channels": {
+      "mainchannel": {
+        "orderers": ["orderer.itrazo.com"],
+        "peers": {
+          "peer0.grower.itrazo.com": {},
+          "peer0.ninemile.itrazo.com": {}
+        }
+      }
+    },
+  
+    "organizations": {
+      "Grower": {
+        "mspid": "GrowerMSP",
+        "peers": ["peer0.grower.itrazo.com"],
+        "certificateAuthorities": ["ca.grower.itrazo.com"]
+      },
+      "Ninemile": {
+        "mspid": "NinemileMSP",
+        "peers": ["peer0.ninemile.itrazo.com"],
+        "certificateAuthorities": ["ca.ninemile.itrazo.com"]
+      }
+    },
+  
+    "peers": {
+      "peer0.grower.itrazo.com": {
+        "url": "grpc://localhost:10051",
+        "eventUrl": "grpc://localhost:10053"
+      },
+      "peer0.ninemile.itrazo.com": {
+        "url": "grpc://localhost:11051",
+        "eventUrl": "grpc://localhost:11053"
+      }
+    },
+  
+    "certificateAuthorities": {
+      "ca.grower.itrazo.com": {
+        "url": "http://localhost:10054",
+        "caName": "ca.grower.itrazo.com"
+      },
+      "ca.ninemile.itrazo.com": {
+        "url": "http://localhost:11054",
+        "caName": "ca.ninemile.itrazo.com"
+      }
+    }
+  }
+  
